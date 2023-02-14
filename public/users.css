@@ -1,0 +1,20 @@
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: rgb(241, 243, 243);
+}
+
+form{
+    width: 40%;
+    border-radius: 10px;
+    border: 2px solid black;
+    padding: 15px;
+    box-shadow: 1px 1px 1px gray;
+    background-color: white;
+}
+
+.error-msg{
+    color: rgb(176, 21, 21);
+}
