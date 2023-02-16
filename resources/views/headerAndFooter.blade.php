@@ -39,20 +39,20 @@
       <div class="middle-sidebar">
         <ul class="sidebar-list">
           <li class="sidebar-list-item  " onclick="makeElementActive(this)">
-            <a href="chambre.php" id="home-link" class="sidebar-link  ">
+            <a href="/plates" id="home-link" class="sidebar-link  ">
               <svg class="sidebar-icon " viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" focusable="false" ><g ><path d="M4,10V21h6V15h4v6h6V10L12,3Z" ></path></g></svg>
               <div class="hidden-sidebar sidebar-link-text ">Accueil</div>
             </a>
           </li>
           <li class="sidebar-list-item " onclick="makeElementActive(this)">
-            <a href="historique.php" class="sidebar-link">
+            <a href="/plates" class="sidebar-link">
             <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 24 24"><path fill="currentColor" d="M21 15c0-4.625-3.507-8.441-8-8.941V4h-2v2.059c-4.493.5-8 4.316-8 8.941v2h18v-2zM2 18h20v2H2z"/></svg>
                           <div class="hidden-sidebar sidebar-link-text ">Plats</div>
             </a>
           </li>
-   
+    @auth
           <li class="sidebar-list-item " onclick="makeElementActive(this)">
-            <a href="profile.php" class="sidebar-link">
+            <a href="/users/{{auth()->user()->id}}" class="sidebar-link">
               <svg  xmlns="http://www.w3.org/2000/svg" width="25px" height="25px" viewBox="0 0 48 48">
                 <g fill="currentColor">
                   <path fill-rule="evenodd" d="M24 42c9.941 0 18-8.059 18-18S33.941 6 24 6S6 14.059 6 24s8.059 18 18 18Zm0 2c11.046 0 20-8.954 20-20S35.046 4 24 4S4 12.954 4 24s8.954 20 20 20Z" clip-rule="evenodd"/>
@@ -65,7 +65,7 @@
               <div class="hidden-sidebar sidebar-link-text ">Profil</div>
             </a>
           </li>
-         
+    @endauth     
         
         </ul>
       </div>

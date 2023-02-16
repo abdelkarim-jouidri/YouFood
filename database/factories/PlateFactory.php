@@ -20,6 +20,7 @@ class PlateFactory extends Factory
             //
             'name' => $this->faker->sentence(),
             'description' => $this->faker->paragraph(1),
+            'city'=>$this->faker->city()
             
         ];
     }

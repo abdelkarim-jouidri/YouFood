@@ -13,7 +13,7 @@ class PlatesController extends Controller
     }
 
     public function store(Request $request){
-        dd($request);
+        // dd($request);
         $formFields = $request->validate([
             'name'=>'required',
             'description'=>'required'
@@ -38,9 +38,12 @@ class PlatesController extends Controller
     public function update(Request $request, Plate $plate){
         $formFields = $request->validate([
             'name'=>'required',
-            'description'=>'required'
+            'description'=>'required',
+            
         ]);
-
+        if($request->hasFile('image')){
+            $formFields['image'] = $request->file('image')->store('images','public');
+        }
         $plate->update($formFields);
         return back();
     }

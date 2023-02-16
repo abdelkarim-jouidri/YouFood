@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Models\Listing;
+use App\Models\Plate;
 use Termwind\Components\Li;
 
 /*
@@ -21,14 +22,21 @@ use Termwind\Components\Li;
 //All listings
 // Route::get('/')
 
-Route::get('/plates',[PlatesController::class,'index']);
+Route::get('/plates',[PlatesController::class,'index'])->middleware('auth');
+
+Route::view('/plates/create','plates.create');
+//single plate
+Route::get('/plates/{plate}', function (Plate $plate){
+    // dd($plate);s
+    return view('plates.singlePlate',['plate'=>$plate]);
+});
 
 //store a plate
+// Route::get('plates/create',[PlatesController::class,'create']);
 Route::post('/plates',[PlatesController::class,'store']);
 
-Route::get('plates/create',[PlatesController::class,'create']);
 
-//edit
+//edit plate
 Route::get('/plates/{plate}/edit',[PlatesController::class,'edit']);
 
 Route::put('plates/{plate}',[PlatesController::class,'update']);
@@ -45,7 +53,11 @@ Route::post('/logout',[UserController::class,'logout']);
 
 //handle user login
 
-Route::get('/login',[UserController::class,'login']);
+Route::get('/login',[UserController::class,'login'])->name('login');
 
 // user login
 Route::post('users/login',[UserController::class,'authenticate']);
+
+//edit profile
+Route::get('/users/{user}',[UserController::class,'edit'])->name('profile');
+Route::put('/profile/update/{user}',[UserController::class,'update']);
