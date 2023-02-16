@@ -29,7 +29,7 @@ Route::view('/plates/create','plates.create');
 Route::get('/plates/{plate}', function (Plate $plate){
     // dd($plate);s
     return view('plates.singlePlate',['plate'=>$plate]);
-});
+})->middleware('auth');;
 
 //store a plate
 // Route::get('plates/create',[PlatesController::class,'create']);

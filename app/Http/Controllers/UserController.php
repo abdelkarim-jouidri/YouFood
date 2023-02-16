@@ -69,9 +69,7 @@ class UserController extends Controller
         ]);
         $formFields['password'] = bcrypt($formFields['password']);
 
-        //create user
         $user->update($formFields);
-        // auth()->login($user);
         return back();
     }
 }
