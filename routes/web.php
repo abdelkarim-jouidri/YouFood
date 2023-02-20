@@ -22,14 +22,18 @@ use Termwind\Components\Li;
 //All listings
 // Route::get('/')
 
-Route::get('/plates',[PlatesController::class,'index'])->middleware('auth');
+Route::get('/',function(){
+    return view('index');
+});
+
+Route::get('/',[PlatesController::class,'index']);
 
 Route::view('/plates/create','plates.create');
 //single plate
 Route::get('/plates/{plate}', function (Plate $plate){
     // dd($plate);s
     return view('plates.singlePlate',['plate'=>$plate]);
-})->middleware('auth');;
+});
 
 //store a plate
 // Route::get('plates/create',[PlatesController::class,'create']);

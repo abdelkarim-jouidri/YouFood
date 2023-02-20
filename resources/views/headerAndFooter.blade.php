@@ -12,30 +12,35 @@
 <body>
 <header class="header">
     <div class="logo-toggle">
-      <!-- <button class="menu-icon-btn" data-menu-icon-btn>
-        <svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" focusable="false" class="menu-icon"><g ><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path></g></svg>
-      </button> -->
-      <div class="logo-img">
+     
+      <div class="logo-img d-flex gap-2">
       <svg xmlns="http://www.w3.org/2000/svg" width="3em" height="3em" viewBox="0 0 64 64"><path fill="currentColor" d="M56.411.719S7.623.704 7.637.719C3.14.719.612 3.044.612 7.793v48.966c0 4.443 2.273 6.769 6.766 6.769h49.173c4.493 0 6.769-2.21 6.769-6.769V7.793c.001-4.634-2.275-7.074-6.909-7.074zM30.749 23.374c0 1.536-1.399 3.181-3.215 3.181V52.49c0 3.682-5.018 3.682-5.018 0V26.555c-1.767 0-3.306-1.361-3.306-3.4V8.882c0-1.242 1.795-1.29 1.795.049v10.55h1.503V8.833c0-1.141 1.729-1.214 1.729.049v10.599h1.553V8.848c0-1.193 1.678-1.241 1.678.047v10.586h1.528V8.848c0-1.18 1.753-1.227 1.753.047v14.479zm13.386 29.104c0 3.601-5.028 3.547-5.028 0V36.496H36.43V12.199c0-5.656 7.706-5.656 7.706 0v40.279z"/></svg>
+      <h1 class="fs-1 ">YouFood</h1>
       </div>
     </div>
+
    
+    @auth
     <form action="/logout" method="POST" class="inline">
       @csrf
       <div class="logout d-flex gap-4 align-items-center">
-        @auth
         <span class="fw-bold">Welcome {{auth()->user()->name}}</span>
-        @endauth
         
         <button type="submit">
           <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 512 512"><path fill="red" d="M400 54.1c63 45 104 118.6 104 201.9c0 136.8-110.8 247.7-247.5 248C120 504.3 8.2 393 8 256.4C7.9 173.1 48.9 99.3 111.8 54.2c11.7-8.3 28-4.8 35 7.7L162.6 90c5.9 10.5 3.1 23.8-6.6 31c-41.5 30.8-68 79.6-68 134.9c-.1 92.3 74.5 168.1 168 168.1c91.6 0 168.6-74.2 168-169.1c-.3-51.8-24.7-101.8-68.1-134c-9.7-7.2-12.4-20.5-6.5-30.9l15.8-28.1c7-12.4 23.2-16.1 34.8-7.8zM296 264V24c0-13.3-10.7-24-24-24h-32c-13.3 0-24 10.7-24 24v240c0 13.3 10.7 24 24 24h32c13.3 0 24-10.7 24-24z"/></svg>
         </button>
       </div>
     </form>
+    @endauth
+    @guest
+      <a href="/login" class="fw-normal">Login as an admin</a>
+    @endguest
+
   </header>
   <div class="Container">
       <!----------------------------------------------------------------------- side bar ------------------------------------------------------->
-    <aside class="sidebar" data-sidebar>
+   @auth
+      <aside class="sidebar" data-sidebar>
       <div class="middle-sidebar">
         <ul class="sidebar-list">
           <li class="sidebar-list-item  " onclick="makeElementActive(this)">
@@ -50,7 +55,6 @@
                           <div class="hidden-sidebar sidebar-link-text ">Plats</div>
             </a>
           </li>
-    @auth
           <li class="sidebar-list-item " onclick="makeElementActive(this)">
             <a href="/users/{{auth()->user()->id}}" class="sidebar-link">
               <svg  xmlns="http://www.w3.org/2000/svg" width="25px" height="25px" viewBox="0 0 48 48">
@@ -65,12 +69,12 @@
               <div class="hidden-sidebar sidebar-link-text ">Profil</div>
             </a>
           </li>
-    @endauth     
         
         </ul>
       </div>
 
     </aside>
+  @endauth
       <!----------------------------------------------------------------------- End of side bar ------------------------------------------------->
 
     <main class="content p-3 gap-3">

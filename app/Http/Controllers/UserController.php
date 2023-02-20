@@ -26,7 +26,7 @@ class UserController extends Controller
         //create user
         $user = User::create($formFields);
         auth()->login($user);
-        return redirect('/plates');
+        return redirect('/');
     }
 
     public function logout(Request $request){
@@ -50,7 +50,7 @@ class UserController extends Controller
         ]);
         if(auth()->attempt($formFields)){
             $request->session()->regenerate();
-            return redirect('/plates');
+            return redirect('/');
         }
         else {
             return back()->withErrors(['email'=>'invalid username or password'])->onlyInput('email');
